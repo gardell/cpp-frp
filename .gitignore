@@ -20,6 +20,10 @@ CTestTestfile.cmake
 Testing/
 Win32/
 
+## vscode
+.vscode
+build
+
 ## Visual Studio
 
 *.sln
