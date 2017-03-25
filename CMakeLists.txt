@@ -13,7 +13,10 @@
 cmake_minimum_required(VERSION 3.1)
 set (CMAKE_CXX_STANDARD 14)
 
+SET(DISABLE_TESTING false CACHE BOOL "Disable tests")
 SET(ENABLE_COVERAGE false CACHE BOOL "Enable test coverage with GCC or clang")
+
+if (NOT ${DISABLE_TESTING})
 
 # Download and unpack googletest at configure time
 configure_file(CMakeLists.txt.in
@@ -35,11 +38,18 @@ add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/googletest-src
 
 enable_testing()
 
+endif() # DISABLE_TESTING
+
 project (cpp-frp)
+
+if (NOT ${DISABLE_TESTING})
 
 if (${ENABLE_COVERAGE})
   add_compile_options(-g -O0 -fprofile-arcs -ftest-coverage)
 endif ()
 
-add_subdirectory(cpp-frp)
 add_subdirectory(test)
+
+endif() # DISABLE_TESTING
+
+add_subdirectory(cpp-frp)
