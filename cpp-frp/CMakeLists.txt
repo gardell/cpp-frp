@@ -10,7 +10,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-include_directories(include)
 
 set(FRP_INCLUDES
   "include/frp/internal/operator.h"
@@ -35,3 +34,5 @@ set(FRP_INCLUDES
 )
 
 add_library(cpp-frp ${FRP_INCLUDES} "src/dummy.cpp")
+
+target_include_directories(cpp-frp PUBLIC include)
